@@ -1,7 +1,7 @@
 # **Flutter Profile Page**  
 
 ## **Overview**  
-This project is a **Flutter-based profile page application**, originally developed as part of CS 442 MP2. The goal was to create a single-screen **social networking profile page** with structured user information, images, and responsive UI components.  
+This project is a **Flutter-based profile page application**, the goal was to create a single-screen **social networking profile page** with structured user information, images, and responsive UI components.  
 
 The app demonstrates **modern UI design principles in Flutter**, emphasizing layout organization, component reusability, and clean code structure. While it started as an academic exercise, I’ve refined and extended it to serve as a personal Flutter learning project.  
 
