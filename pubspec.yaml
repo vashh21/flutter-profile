@@ -1,0 +1,28 @@
+name: cs442_mp2
+description: "CS 442 MP2: Profile page"
+
+environment:
+  sdk: '^3.5.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/profile.jpg
+    - assets/images/iit_logo.jpg
+    - assets/images/mumbai_university_logo.png
+    - assets/images/project1.png
+    - assets/images/project2.png
+    - assets/images/project3.jpg
+    - assets/images/project4.png
+    - assets/images/project5.png
+
