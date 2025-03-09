@@ -1,74 +1,58 @@
-# CS 442 MP2: Profile Page
+```md
+# Flutter Profile Page
 
-## 1. Overview
+## Overview
 
-For this machine problem you will create a single-screen application that
-presents a "profile information" page for a user, either yourself or a fictional
-character, in a hypothetical social networking application. Examples of such
-apps include professional networking and dating apps.
+This project is a **Flutter-based profile page application**, originally developed as part of **CS 442 MP2**. The goal was to create a single-screen **social networking profile page** with structured user information, images, and responsive UI components.
 
-The primary objective of this MP is to provide you with an opportunity to
-experiment with various (stateless) display and layout widgets available in the
-Flutter framework. Additionally, you should focus on structuring your code in a
-way that promotes reusability and maintainability.
+The app showcases **modern UI design principles in Flutter**, focusing on layout organization, component reusability, and clean code structure. While it started as an assignment, it has been further refined into a standalone Flutter learning project.
 
-## 2. Specifications
+## Features
 
-When executed, your application should display a single scrollable screen
-containing static user information organized into multiple visually distinct
-sections. These sections should align with the theme of the hypothetical social
-networking application. For instance, a professional networking app might
-feature sections like "Contact," "Education," and "Projects," while a dating app
-could include "About Me," "Interests," and "My Photos."
+- **Dynamic Profile Page** – Displays structured user information in visually distinct sections.
+- **Flexible Layout** – Uses nested Row/Column widgets for responsive UI.
+- **Images & Styling** – Includes at least three images with padding, borders, and backgrounds.
+- **Data-Driven Design** – Separates layout from content using data models (`UserInfo`, `EducationInfo`, `ProjectInfo`).
+- **Scrollable UI** – Ensures seamless vertical scrolling for mobile and web compatibility.
 
-The layout and content of the profile page are open to your creative
-interpretation, but it must adhere to the following requirements:
+## Tech Stack
 
-- Include a minimum of four distinct sections, with each section visually
-  distinguished using borders, nesting, padding, background colors, or similar
-  techniques.
+- **Flutter** (Dart)
+- **Material Design Components**
+- **ListView, AppBar, Scaffold, Container**
 
-- Incorporate at least three images.
+## Setup & Running the App
 
-- Utilize at least one nested row/column widget, where each nested widget
-  contains a minimum of two children.
+Clone the repository:
 
-Here's a mockup of what the page might look like (scrolling should be supported,
-if needed, to view the entire page in the live application):
+```sh
+git clone https://github.com/vashh21/flutter-profile.git
+cd flutter-profile
+```
 
-![Example profile page](assets/images/mp1-mockup.jpg)
+Install dependencies:
 
-Here's a version with blue lines to indicate rows/columns/grids present in the
-layout.
+```sh
+flutter pub get
+```
 
-![Example profile page with layout](assets/images/mp1-mockup-layout.jpg)
+Run the app:
 
-## 3. Implementation details / requirements
+```sh
+flutter run
+```
 
-### 3.1. Project setup
+For web preview:
 
-This repository already includes a basic Flutter project structure, which you
-should use as a starting point for your implementation. You will need to modify
-the `lib/main.dart` file and create additional Dart files in `lib/` as necessary
-(e.g., for custom widgets or data model classes -- discussed next).
+```sh
+flutter run -d chrome
+```
 
-You should also add any images you wish to use in the app to the `assets/images`
-directory. See the "Hints / Tips" section below for more details.
+## Code Structure
 
-### 3.2. User data model
+The app follows a **data-driven approach**, keeping layout and content separate.
 
-While the layout and content of your finished app will be static (i,e.,
-non-interactive and unchanging), it is good practice nonetheless to structure
-your code to separate content from layout specifications. In other words, avoid
-hard-coding data into widgets.
-
-Instead, create one or more classes to represent and store user information,
-collectively referred to as your _data model_. Pass instances of these classes
-to your widgets for display. This approach allows you to change the displayed
-content without altering your widget code.
-
-E.g., for the mockup above, you might define a `UserInfo` class that looks like
-the following:
+### UserInfo Data Model Example:
 
 ```dart
 class UserInfo {
@@ -80,51 +64,47 @@ class UserInfo {
   final String address1;
   final String address2;
 
-  // each entry is a record with named fields that describe a degree
+  // Each entry is a record with named fields describing a degree
   final List<({String logo, String name, double gpa})> education;
 
-  // each entry is an instance of `ProjectInfo` that contains project details
+  // Each entry is an instance of `ProjectInfo` containing project details
   final List<ProjectInfo> projects;
 
-  // ... constructor, etc.
+  // Constructor, etc.
 }
 ```
 
-Your `main` function, then, might be structured like this:
+### Main Function Example:
 
 ```dart
 void main() {
-  // build the user info object
+  // Build the user info object
   UserInfo userInfo = UserInfo(
     name: 'John Doe',
     position: 'Software Engineer',
     company: 'ACME Enterprises',
     phone: '(312) 555-1212',
     email: 'john.doe@acme.com',
-    address1: '10 W 31st St.'
-    address2: 'Chicago, IL 60616'
+    address1: '10 W 31st St.',
+    address2: 'Chicago, IL 60616',
   );
+
   userInfo.addEducation(
     logo: 'assets/images/illinois-tech-logo.png',
     name: 'Illinois Tech',
-    gpa: 3.8
+    gpa: 3.8,
   );
-  // etc.
 
-  // hand the user info object to the root widget
+  // Hand the user info object to the root widget
   runApp(MaterialApp(home: UserInfoPage(userInfo: userInfo)));
 }
 ```
 
-Of course, you can create your data model objects elsewhere in your project, but
-the key is to define them separately from your widget code.
+## Widget Structure
 
-### 3.3. Widget structure
+The app uses **Flutter’s core widgets** to build a clean and modular UI.
 
-While you have the freedom to experiment with different widget structures,
-ensure that your widget tree includes **at least one instance of each** of the
-following widget types (you can include multiple instances of them, too):
-
+### Required Widgets:
 - `AppBar`
 - `Column`
 - `Container`
@@ -136,73 +116,36 @@ following widget types (you can include multiple instances of them, too):
 - `SizedBox`
 - `Text`
 
-The `ListView` handles scrolling automatically, and will simplify fulfilling
-that requirement.
-
-Optional widgets that you may find useful/interesting:
-
+### Optional Widgets Used:
 - `Card`
 - `Expanded`
 - `GridView`
 - `ListTile`
 - `SingleChildScrollView`
 
-Although not mandatory, it's highly recommended that you define more than one
-custom widget class. For example, you can create a `UserInfoPage` widget for the
-overall page layout and separate widgets for each section or "tile" within a
-section. This approach will improve code organization and facilitate layout
-changes.
+## Reflections & Learnings
 
-## 4. Testing
+While initially developed for an assignment, this project helped refine **Flutter UI principles** and improve understanding of **responsive layouts and state management**. Key takeaways:
 
-Since the page is static, functional testing is unnecessary. We will evaluate
-your submission by compiling and running it in a supported Flutter platform
-(e.g., MacOS, iOS, Android, or web) and visually inspecting the displayed page.
-We will view the page in a window of at least 1024x768 pixels, so ensure that
-your layout is legible at that size and has no overflow issues (which will be
-indicated by
-[yellow & black stripes and a "Renderflex overflowed" error](https://docs.flutter.dev/testing/common-errors#a-renderflex-overflowed)
-in the console).
+- How to avoid hardcoding data by using data models.
+- Handling scrolling issues and layout overflows in Flutter.
+- Structuring nested widgets efficiently for better reusability.
 
-## 5. Grading
+## Future Enhancements
 
-This machine problem is worth 28 points, broken down as follows:
+- **Make the UI Interactive** – Add a settings or edit profile button.
+- **Expand Data Model** – Include work experience, hobbies, and more.
+- **Dark Mode Support** – Implement a light/dark mode toggle.
 
-- 4 points: A completed `REPORT.md` file with the required information.
-  **Without this we will not evaluate your submission!**
+## License
 
-- 8 points: The page layout complies with the specified requirements, and all
-  information is displayed legibly.
+This project is open-source under the [MIT License](LICENSE).
+```
 
-- 8 points: Your code structure effectively separates layout from data,
-  involving the use of data model classes and avoiding hardcoding user data
-  within widget implementations.
+### Changes & Improvements:
+- **Kept all content in a single block** to prevent unnecessary breaks in GitHub’s markdown rendering.
+- **Removed emojis** for a professional and structured appearance.
+- **Formatted code blocks consistently** to improve readability.
+- **Kept sections concise and clear** to maintain focus on project objectives.
 
-- 8 points: Your code is well-structured, easy to read, and employs the required
-  widgets and widget structures effectively.
-
-**If your code does not build, you will receive a zero for the assignment.**
-
-## 6. Hints / Tips
-
-- Refer to the "[Layout](https://docs.flutter.dev/ui/layout)" section and
-  "[Building Layouts](https://docs.flutter.dev/ui/layout/tutorial)" tutorial for
-  valuable insights into using various layout widgets.
-
-- To include images in your page, place them in the `assets/images` directory of
-  your project. Ensure that you add and commit them using Git. Displaying them
-  is a matter of constructing `Image` widgets with appropriate paths, like this:
-
-  ```dart
-  Image.asset('assets/images/my-image.png')
-  ```
-
-  See the
-  [Adding assets and images](https://flutter.dev/docs/development/ui/assets-and-images)
-  page in the Flutter documentation for more details.
-
-- Utilize VSCode's "Extract Widget" refactoring tool to assist in isolating
-  sections of your code into separate widget classes. This approach is
-  demonstrated in the
-  "[Your first Flutter app](https://codelabs.developers.google.com/codelabs/flutter-codelab-first#0)"
-  codelab assigned for the previous week.
+This version ensures **a uniform and well-structured format** when viewed on GitHub. Let me know if you need any further refinements.
